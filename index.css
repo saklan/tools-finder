@@ -1,0 +1,1073 @@
+:root {
+  --font-family-sans: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-headings: 'Montserrat', var(--font-family-sans); /* Changed to Montserrat */
+  
+  /* Light Theme */
+  --bg-color-light: #f8f9fa; /* Even Lighter grey */
+  --text-color-light: #212529; /* Darker text for better contrast */
+  --card-bg-light: #ffffff;
+  --card-border-light: #dee2e6; /* Lighter border */
+  --header-bg-light: #ffffff; 
+  --sidebar-bg-light: #ffffff; /* White sidebar for cleaner look */
+  --primary-color-light: #007bff; /* Standard Bootstrap Blue */
+  --primary-hover-light: #0056b3;
+  --secondary-color-light: #6c757d; /* Grey */
+  --accent-color-light: #17a2b8; /* Info Teal */
+  --link-color-light: var(--primary-color-light);
+  --button-bg-light: var(--primary-color-light);
+  --button-text-light: #ffffff;
+  --input-bg-light: #ffffff;
+  --input-border-light: #ced4da;
+  --input-text-light: #495057;
+  --tag-bg-light: #e9ecef;
+  --tag-text-light: #495057;
+  --section-title-color-light: #343a40;
+
+  /* Dark Theme */
+  --bg-color-dark: #121212; /* True dark */
+  --text-color-dark: #e0e0e0; /* Lighter grey for text */
+  --card-bg-dark: #1e1e1e; /* Darker card */
+  --card-border-dark: #333333; /* Subtler border */
+  --header-bg-dark: #181818; 
+  --sidebar-bg-dark: #1c1c1c; /* Darker sidebar */
+  --primary-color-dark: #0d6efd; /* Brighter Bootstrap Blue */
+  --primary-hover-dark: #3b82f6;
+  --secondary-color-dark: #adb5bd; /* Lighter Grey */
+  --accent-color-dark: #20c997; /* Teal */
+  --link-color-dark: var(--primary-color-dark);
+  --button-bg-dark: var(--primary-color-dark);
+  --button-text-dark: #ffffff; /* White text on dark buttons */
+  --input-bg-dark: #2b2b2b;
+  --input-border-dark: #444444;
+  --input-text-dark: #cccccc;
+  --tag-bg-dark: #343a40;
+  --tag-text-dark: #adb5bd;
+  --section-title-color-dark: #f8f9fa;
+
+
+  --border-radius: 8px; /* Slightly more rounded */
+  --box-shadow-light: 0 4px 12px rgba(0,0,0,0.08); /* Softer shadow */
+  --box-shadow-dark: 0 6px 15px rgba(0,0,0,0.2);
+  --global-transition: all 0.3s ease-in-out;
+}
+
+/* Apply theme to html for global consistency */
+html.light-theme {
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+}
+
+html.dark-theme {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+}
+
+body {
+  font-family: var(--font-family-sans);
+  margin: 0;
+  line-height: 1.7; /* Increased line height */
+  font-size: 16px; /* Base font size */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-container.sidebar-is-visible-desktop .main-content {
+    /* Grid handles this now */
+}
+
+/* --- General Section Styling --- */
+.homepage-section {
+    padding: 2.5rem 1.5rem; /* Standardized padding */
+    margin-bottom: 1rem; /* Space between sections */
+}
+html.light-theme .homepage-section:nth-child(even) { /* Subtle striping for sections */
+    /* background-color: #f1f3f5; */ /* Can enable if desired */
+}
+html.dark-theme .homepage-section:nth-child(even) {
+    /* background-color: #161616; */
+}
+
+
+.section-title {
+    font-family: var(--font-family-headings);
+    font-size: 2rem; /* Prominent section titles */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem; /* Space after title */
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+html.light-theme .section-title { color: var(--section-title-color-light); }
+html.dark-theme .section-title { color: var(--section-title-color-dark); }
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    border-radius: 2px;
+}
+html.light-theme .section-title::after { background-color: var(--primary-color-light); }
+html.dark-theme .section-title::after { background-color: var(--primary-color-dark); }
+
+
+/* Header */
+.header {
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.2s ease;
+}
+html.light-theme .header { background-color: var(--header-bg-light); border-bottom: 1px solid var(--card-border-light); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+html.dark-theme .header { background-color: var(--header-bg-dark); border-bottom: 1px solid var(--card-border-dark); box-shadow: 0 2px 4px rgba(0,0,0,0.15); }
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem; /* Slightly larger logo */
+  font-weight: 700; /* Bolder logo */
+  font-family: var(--font-family-headings);
+}
+.header-logo a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: color 0.2s ease;
+}
+html.light-theme .header-logo a { color: var(--primary-color-light); }
+html.dark-theme .header-logo a { color: var(--primary-color-dark); }
+.header-logo a:hover { opacity: 0.8; }
+.header-logo .fa-wand-magic-sparkles { font-size: 1.3em; }
+
+.sidebar-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  display: none; 
+  padding: 0.3rem;
+  transition: color 0.2s ease;
+}
+html.light-theme .sidebar-toggle-btn { color: var(--text-color-light); }
+html.dark-theme .sidebar-toggle-btn { color: var(--text-color-dark); }
+.sidebar-toggle-btn:hover { opacity: 0.7;}
+
+
+.header-search {
+  flex-grow: 1;
+  max-width: 550px; /* Wider search bar */
+  margin: 0 1.5rem;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 0.75rem 1.25rem; /* More padding */
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+html.light-theme .search-bar { background-color: var(--input-bg-light); border: 1px solid var(--input-border-light); color: var(--input-text-light); }
+html.dark-theme .search-bar { background-color: var(--input-bg-dark); border: 1px solid var(--input-border-dark); color: var(--input-text-dark); }
+.search-bar:focus { outline: none; }
+html.light-theme .search-bar:focus { border-color: var(--primary-color-light); box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
+html.dark-theme .search-bar:focus { border-color: var(--primary-color-dark); box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.35); }
+
+
+.header-actions { display: flex; align-items: center; }
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+html.light-theme .theme-toggle { color: var(--text-color-light); }
+html.dark-theme .theme-toggle { color: var(--text-color-dark); }
+html.light-theme .theme-toggle:hover { background-color: rgba(0,0,0,0.07); }
+html.dark-theme .theme-toggle:hover { background-color: rgba(255,255,255,0.12); }
+
+/* --- Dynamic Hero Section --- */
+.hero-section {
+    text-align: center;
+    padding: 5rem 1.5rem 4rem; /* More top padding */
+    display: flex;
+    flex-direction: column; /* For dots */
+    align-items: center;
+    justify-content: center;
+    min-height: 350px; /* Ensure enough height */
+    position: relative;
+    overflow: hidden; /* For slide transitions */
+}
+html.light-theme .hero-section { background: linear-gradient(135deg, var(--primary-color-light) 0%, var(--accent-color-light) 100%); color: #fff; }
+html.dark-theme .hero-section { background: linear-gradient(135deg, var(--primary-color-dark) 0%, var(--accent-color-dark) 100%); color: #fff; } /* Ensure text is white for dark theme gradient */
+
+.hero-content {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Max width for content */
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative; /* Take up space when active */
+}
+
+.hero-content h1 {
+    font-size: 2.5rem; /* Adjusted for multiple slides */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: var(--font-family-headings);
+    line-height: 1.3;
+}
+.hero-content p {
+    font-size: 1.15rem;
+    margin-bottom: 1.8rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+}
+.hero-cta {
+    padding: 0.9rem 2.2rem;
+    font-size: 1.05rem;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+html.light-theme .hero-cta { background-color: rgba(255,255,255,0.9); color: var(--primary-color-light); }
+html.dark-theme .hero-cta { background-color: rgba(255,255,255,0.95); color: var(--primary-color-dark); }
+
+.hero-cta:hover {
+    transform: translateY(-3px);
+}
+html.light-theme .hero-cta:hover { box-shadow: 0 5px 18px rgba(0,0,0,0.15); background-color: #fff; }
+html.dark-theme .hero-cta:hover { box-shadow: 0 5px 18px rgba(0,0,0,0.35); background-color: #fff; }
+
+.hero-dots {
+    margin-top: 2rem;
+    display: flex;
+    gap: 0.75rem;
+}
+.hero-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.hero-dots .dot.active {
+    background-color: #fff;
+}
+
+
+/* --- Featured Tools Section --- */
+.featured-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.small-tool-card {
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    transition: var(--global-transition);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+    text-align: center;
+}
+html.light-theme .small-tool-card { background-color: var(--card-bg-light); border: 1px solid var(--card-border-light); box-shadow: var(--box-shadow-light); color: var(--text-color-light);}
+html.dark-theme .small-tool-card { background-color: var(--card-bg-dark); border: 1px solid var(--card-border-dark); box-shadow: var(--box-shadow-dark); color: var(--text-color-dark); }
+
+.small-tool-card:hover {
+    transform: translateY(-5px);
+}
+html.light-theme .small-tool-card:hover { box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+html.dark-theme .small-tool-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
+
+.small-tool-card .category-icon-bg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.8rem; /* Icon size */
+}
+html.light-theme .small-tool-card .category-icon-bg { color: #fff; } /* Icon color, background is category specific */
+html.dark-theme .small-tool-card .category-icon-bg { color: #fff; } /* Icon color */
+
+
+.small-tool-card h3 {
+    font-family: var(--font-family-headings);
+    font-size: 1.25rem;
+    margin: 0 0 0.25rem 0;
+}
+html.light-theme .small-tool-card h3 { color: var(--primary-color-light); }
+html.dark-theme .small-tool-card h3 { color: var(--primary-color-dark); }
+
+.small-tool-card .small-tool-category {
+    font-size: 0.8rem;
+    color: var(--secondary-color-light);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+html.dark-theme .small-tool-card .small-tool-category { color: var(--secondary-color-dark); }
+
+.small-tool-card .small-tool-ref {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+    font-style: italic;
+}
+
+.small-tool-card .star-rating {
+    margin-bottom: 1rem;
+    font-size: 0.9rem; /* Smaller stars for small card */
+}
+
+.small-tool-card .small-tool-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: auto; /* Push to bottom */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.2s ease;
+}
+html.light-theme .small-tool-card .small-tool-link { color: var(--primary-color-light); }
+html.dark-theme .small-tool-card .small-tool-link { color: var(--primary-color-dark); }
+.small-tool-card:hover .small-tool-link { text-decoration: underline; }
+
+
+/* --- Category Highlight Section --- */
+.category-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+.category-tile {
+    padding: 1.5rem 1rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--global-transition);
+    border: 1px solid transparent; /* Base border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-family: var(--font-family-headings);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+html.light-theme .category-tile { background-color: var(--card-bg-light); border-color: var(--card-border-light); box-shadow: var(--box-shadow-light); color: var(--text-color-light); }
+html.dark-theme .category-tile { background-color: var(--card-bg-dark); border-color: var(--card-border-dark); box-shadow: var(--box-shadow-dark); color: var(--text-color-dark); }
+
+.category-tile:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+html.light-theme .category-tile:hover { box-shadow: 0 8px 16px rgba(0,0,0,0.12); }
+html.dark-theme .category-tile:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+
+.category-tile i {
+    font-size: 2.2rem; /* Larger icons for tiles */
+    margin-bottom: 0.5rem;
+    /* Color will come from specific category styles */
+}
+.category-tile span {
+    display: block;
+}
+
+
+/* Main Content */
+.main-content {
+  display: grid; /* Switched to grid for easier sidebar layout */
+  grid-template-columns: 280px 1fr; /* Sidebar width and main content */
+  flex: 1;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  position: relative; /* For overlay */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px; /* Fixed width */
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  align-self: flex-start;
+  position: sticky;
+  top: calc(60px + 1.5rem); /* Header height + main content padding-top (approx 60px header) */
+  max-height: calc(100vh - 60px - 3rem); 
+  overflow-y: auto;
+  transition: var(--global-transition);
+  z-index: 1000;
+}
+html.light-theme .sidebar { background-color: var(--sidebar-bg-light); border: 1px solid var(--card-border-light); box-shadow: var(--box-shadow-light); }
+html.dark-theme .sidebar { background-color: var(--sidebar-bg-dark); border: 1px solid var(--card-border-dark); box-shadow: var(--box-shadow-dark); }
+
+.sidebar h3 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  font-size: 1.3rem;
+  font-family: var(--font-family-headings);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+html.light-theme .sidebar h3 { color: var(--primary-color-light); }
+html.dark-theme .sidebar h3 { color: var(--primary-color-dark); }
+
+.sidebar h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid;
+  padding-bottom: 0.5rem;
+}
+html.light-theme .sidebar h4 { border-bottom-color: var(--input-border-light); }
+html.dark-theme .sidebar h4 { border-bottom-color: var(--input-border-dark); }
+
+.filter-group { margin-bottom: 1.5rem; }
+
+.category-filters button {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 1rem; /* Increased padding */
+  margin-bottom: 0.5rem;
+  text-align: left;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.1s ease;
+  border: 1px solid transparent;
+}
+
+html.light-theme .category-filters button { background-color: #f1f3f5; color: var(--text-color-light); border-color: #e0e6ed;}
+html.dark-theme .category-filters button { background-color: #2a2e35; color: var(--text-color-dark); border-color: #3a3f4a;}
+
+html.light-theme .category-filters button:not(.active):hover { background-color: #e9ecef; }
+html.dark-theme .category-filters button:not(.active):hover { background-color: #343a44; }
+.category-filters button:active { transform: scale(0.98); } /* Click effect */
+
+html.light-theme .category-filters button.active { background-color: var(--primary-color-light); color: var(--button-text-light); border-color: var(--primary-color-light); }
+html.dark-theme .category-filters button.active { background-color: var(--primary-color-dark); color: var(--button-text-dark); border-color: var(--primary-color-dark); }
+
+.filter-label {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.25rem; /* Slightly more padding */
+  cursor: pointer;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+html.light-theme .filter-label:hover { background-color: #f1f3f5; }
+html.dark-theme .filter-label:hover { background-color: #2a2e35; }
+
+.filter-label input[type="radio"], .filter-label input[type="checkbox"] {
+  margin-right: 0.85em;
+  transform: scale(1.1);
+}
+html.light-theme .filter-label input[type="radio"], 
+html.light-theme .filter-label input[type="checkbox"] { accent-color: var(--primary-color-light); }
+html.dark-theme .filter-label input[type="radio"], 
+html.dark-theme .filter-label input[type="checkbox"] { accent-color: var(--primary-color-dark); }
+
+
+/* Tool List */
+.tool-list-container {
+  /* No flex:1 needed if using grid for main-content */
+  min-width: 0; 
+}
+
+.tool-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); /* Slightly wider cards */
+  gap: 1.8rem; /* Increased gap */
+}
+
+.no-tools-message {
+  text-align: center;
+  font-style: italic;
+  padding: 3.5rem 1.5rem; /* More padding */
+  font-size: 1.15rem;
+  border-radius: var(--border-radius);
+}
+html.light-theme .no-tools-message { color: #566573; background-color: #e9ecef; border: 1px dashed #ced4da; }
+html.dark-theme .no-tools-message { color: #aeb6bf; background-color: #2c313a; border: 1px dashed #4a4f5a; }
+
+/* Tool Card */
+.tool-card {
+  border-radius: var(--border-radius);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+html.light-theme .tool-card { background-color: var(--card-bg-light); border: 1px solid var(--card-border-light); box-shadow: var(--box-shadow-light); }
+html.dark-theme .tool-card { background-color: var(--card-bg-dark); border: 1px solid var(--card-border-dark); box-shadow: var(--box-shadow-dark); }
+
+.tool-card:hover { transform: translateY(-5px); }
+html.light-theme .tool-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); } /* Enhanced hover shadow */
+html.dark-theme .tool-card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+
+.tool-card .category-band {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px; /* Thicker band */
+}
+
+.tool-card-content {
+  padding: 1.5rem; /* Increased padding */
+  padding-top: calc(1.5rem + 6px); /* Account for band */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tool-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align stars to top if h2 wraps */
+    margin-bottom: 0.25rem;
+}
+.tool-card h2 {
+  font-size: 1.5rem; /* Larger tool name */
+  margin-top: 0;
+  margin-bottom: 0; /* Handled by header gap or premium-ref margin */
+  font-family: var(--font-family-headings);
+}
+html.light-theme .tool-card h2 { color: var(--primary-color-light); }
+html.dark-theme .tool-card h2 { color: var(--primary-color-dark); }
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem; /* Space between stars */
+    font-size: 1rem; /* Default star size */
+}
+html.light-theme .star-rating .fas, html.light-theme .star-rating .far { color: #ffc107; } /* Yellow stars */
+html.dark-theme .star-rating .fas, html.dark-theme .star-rating .far { color: #ffca2c; }
+.star-rating .rating-value {
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
+    font-weight: 500;
+}
+html.light-theme .star-rating .rating-value { color: var(--text-color-light); }
+html.dark-theme .star-rating .rating-value { color: var(--text-color-dark); }
+
+
+.tool-card p { margin-bottom: 0.75rem; font-size: 0.95rem; }
+.tool-card .premium-ref {
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+html.light-theme .tool-card .premium-ref { color: #555; }
+html.dark-theme .tool-card .premium-ref { color: #bbb; }
+.tool-card .tool-short-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+
+.tool-card strong { font-weight: 600; }
+html.light-theme .tool-card strong { color: #343a40; }
+html.dark-theme .tool-card strong { color: #ced4da; }
+
+.tool-card .toggle-description {
+  background: none;
+  border: 1px solid;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+  align-self: flex-start;
+  margin-bottom: 1rem;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  font-weight: 500;
+}
+html.light-theme .tool-card .toggle-description { color: var(--primary-color-light); border-color: var(--primary-color-light); }
+html.dark-theme .tool-card .toggle-description { color: var(--primary-color-dark); border-color: var(--primary-color-dark); }
+html.light-theme .tool-card .toggle-description:hover { background-color: var(--primary-color-light); color: #fff; }
+html.dark-theme .tool-card .toggle-description:hover { background-color: var(--primary-color-dark); color: var(--button-text-dark); }
+
+.detailed-description-container {
+  font-size: 0.9rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out, margin 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  margin-top: 0; margin-bottom: 0;
+  padding-left: 0; /* No left padding on container itself */
+  border-top: 1px dashed;
+  opacity: 0;
+}
+html.light-theme .detailed-description-container { border-top-color: var(--input-border-light); }
+html.dark-theme .detailed-description-container { border-top-color: var(--input-border-dark); }
+
+.detailed-description-container.expanded {
+  max-height: 1000px; /* Generous max height */
+  padding-top: 1rem; padding-bottom: 1rem;
+  margin-top: 0.5rem; margin-bottom: 1rem;
+  opacity: 1;
+}
+.detailed-description-container h4, .detailed-description-container h5 {
+    font-family: var(--font-family-headings);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+html.light-theme .detailed-description-container h4, html.light-theme .detailed-description-container h5 { color: var(--primary-color-light); }
+html.dark-theme .detailed-description-container h4, html.dark-theme .detailed-description-container h5 { color: var(--primary-color-dark); }
+
+.detailed-description-container ul {
+    list-style: inside; /* Or disc, circle */
+    padding-left: 0.5rem;
+    margin-bottom: 1rem;
+}
+.detailed-description-container ul li { margin-bottom: 0.3rem; }
+
+.pros-cons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+.pros-cons-grid h5 i { margin-right: 0.3rem; }
+.pros-cons-grid .fa-thumbs-up { color: #28a745; }
+.pros-cons-grid .fa-thumbs-down { color: #dc3545; }
+
+.tool-gallery {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap; /* Allow wrapping if many images */
+    margin-bottom: 1rem;
+}
+.tool-gallery img {
+    max-width: 150px; /* Control image size */
+    max-height: 100px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid;
+}
+html.light-theme .tool-gallery img { border-color: var(--card-border-light); }
+html.dark-theme .tool-gallery img { border-color: var(--card-border-dark); }
+.tool-gallery .gallery-more { font-size: 0.8rem; font-style: italic; align-self: center; }
+
+
+.tool-actions {
+    margin-top: auto;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem; /* Increased gap */
+    border-top: 1px solid;
+}
+html.light-theme .tool-actions { border-top-color: var(--card-border-light); }
+html.dark-theme .tool-actions { border-top-color: var(--card-border-dark); }
+
+.tool-card .tool-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* More gap */
+  padding: 0.6rem 1.2rem; /* Larger button */
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600; /* Bolder link text */
+  transition: background-color 0.2s, transform 0.2s;
+}
+html.light-theme .tool-card .tool-link { background-color: var(--button-bg-light); color: var(--button-text-light); }
+html.dark-theme .tool-card .tool-link { background-color: var(--button-bg-dark); color: var(--button-text-dark); }
+
+html.light-theme .tool-card .tool-link:hover { background-color: var(--primary-hover-light); transform: scale(1.03); }
+html.dark-theme .tool-card .tool-link:hover { background-color: var(--primary-hover-dark); transform: scale(1.03); }
+
+.price-tag {
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 0.35rem 0.75rem; /* More padding */
+    border-radius: var(--border-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.price-tag.price-free { background-color: #28a745; color: white; }
+.price-tag.price-cheap { background-color: #ffc107; color: #212529; }
+.price-tag.price-paid { background-color: #dc3545; color: white; }
+
+.tool-card .tags {
+  margin-top: 1.25rem; /* More space for tags */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.tool-card .tag {
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px; /* More pill-like */
+  font-size: 0.8rem; /* Slightly larger tags */
+  font-weight: 500;
+}
+html.light-theme .tool-card .tag { background-color: var(--tag-bg-light); color: var(--tag-text-light); border: 1px solid #d1d9e0; }
+html.dark-theme .tool-card .tag { background-color: var(--tag-bg-dark); color: var(--tag-text-dark); border: 1px solid #4a5058; }
+
+.tool-card .tag.tag-alternative { background-color: var(--accent-color-light); color: white; border-color: var(--accent-color-light);}
+html.dark-theme .tool-card .tag.tag-alternative { background-color: var(--accent-color-dark); color: var(--bg-color-dark); border-color: var(--accent-color-dark); } /* Ensuring contrast */
+
+
+/* Footer */
+.footer {
+  padding: 3rem 1.5rem 1.5rem; /* More top padding */
+  margin-top: auto;
+  font-size: 0.95rem; /* Slightly larger footer text */
+}
+html.light-theme .footer { background-color: #e9ecef; border-top: 1px solid var(--card-border-light); } /* Slightly darker footer bg for light theme */
+html.dark-theme .footer { background-color: var(--header-bg-dark); border-top: 1px solid var(--card-border-dark); }
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+    text-align: left;
+}
+.footer-about h4, .footer-social h4, .footer-links-container h4 {
+    font-family: var(--font-family-headings);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+html.light-theme .footer-about h4, html.light-theme .footer-social h4, html.light-theme .footer-links-container h4 { color: var(--primary-color-light); }
+html.dark-theme .footer-about h4, html.dark-theme .footer-social h4, html.dark-theme .footer-links-container h4 { color: var(--primary-color-dark); }
+.footer-about p { font-size: 0.9rem; line-height: 1.6; }
+
+.footer-social a {
+    font-size: 1.5rem; /* Larger social icons */
+    margin-right: 1rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block; /* For transform */
+}
+.footer-social a:last-child { margin-right: 0; }
+html.light-theme .footer-social a { color: var(--text-color-light); }
+html.dark-theme .footer-social a { color: var(--text-color-dark); }
+.footer-social a:hover { transform: scale(1.1); }
+html.light-theme .footer-social a:hover { color: var(--primary-color-light); }
+html.dark-theme .footer-social a:hover { color: var(--primary-color-dark); }
+
+
+.footer-links-container a {
+    display: block;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease;
+}
+html.light-theme .footer-links-container a { color: var(--text-color-light); }
+html.dark-theme .footer-links-container a { color: var(--text-color-dark); }
+html.light-theme .footer-links-container a:hover { color: var(--primary-color-light); text-decoration: underline;}
+html.dark-theme .footer-links-container a:hover { color: var(--primary-color-dark); text-decoration: underline;}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid;
+    font-size: 0.9rem;
+}
+html.light-theme .footer-bottom { border-top-color: var(--card-border-light); }
+html.dark-theme .footer-bottom { border-top-color: var(--card-border-dark); }
+.footer-bottom p { margin: 0.3rem 0; }
+
+
+/* Overlay for mobile sidebar */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+  z-index: 1020; /* Below sidebar, above content */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+.overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .tool-list {
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  }
+}
+
+@media (max-width: 992px) { /* Tablet and below */
+  .main-content {
+    grid-template-columns: 1fr; /* Stack sidebar and content */
+  }
+  .sidebar-toggle-btn { display: block; }
+  .sidebar {
+    position: fixed; /* Fixed position for mobile */
+    left: 0;
+    top: 0; 
+    bottom: 0;
+    height: 100vh; 
+    max-height: 100vh;
+    transform: translateX(-100%); /* Hidden by default */
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+    border-right: 1px solid; 
+    border-radius: 0;
+    z-index: 1030; /* Higher than overlay */
+    visibility: hidden; /* Hide when transformed out */
+  }
+  html.light-theme .sidebar { border-right-color: var(--card-border-light); }
+  html.dark-theme .sidebar { border-right-color: var(--card-border-dark); }
+
+  .sidebar.visible {
+    transform: translateX(0); /* Slide in */
+    visibility: visible; 
+  }
+  
+  .hero-content h1 { font-size: 2.2rem; }
+  .hero-content p { font-size: 1.1rem; }
+  .tool-list {
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  }
+  .featured-tools-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .category-tiles {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .header-search { margin: 0 1rem; max-width: none; } 
+  .header-logo a { font-size: 1.2rem; } 
+  .header-logo .fa-wand-magic-sparkles { font-size: 1.1em; }
+
+  .hero-content h1 { font-size: 2rem; }
+  .hero-content p { font-size: 1rem; }
+  .section-title { font-size: 1.8rem; }
+  
+  .tool-list {
+    grid-template-columns: 1fr; /* Single column on small mobiles */
+  }
+  .featured-tools-grid {
+    grid-template-columns: 1fr;
+  }
+  .category-tiles {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  .pros-cons-grid { grid-template-columns: 1fr; } /* Stack pros/cons */
+  .footer-content { grid-template-columns: 1fr; text-align: center;} /* Stack footer columns */
+  .footer-social { margin-bottom: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .header { padding: 0.5rem 1rem; flex-wrap: wrap; }
+  .header-logo { order: 1; margin-bottom: 0.5rem; width: auto; /* Allow search to take space */ }
+  .sidebar-toggle-btn { order: 0; margin-right: auto; } /* Toggle button first */
+  .header-search { order: 2; width: 100%; margin: 0 0 0.5rem 0;}
+  .header-actions { order: 1; /* Theme toggle to the right of logo */}
+
+  .hero-section { padding: 3rem 1rem; min-height: 300px; }
+  .hero-content h1 { font-size: 1.8rem; }
+  .hero-content p { font-size: 0.9rem; }
+  .hero-cta { padding: 0.7rem 1.5rem; font-size: 1rem; }
+  .section-title { font-size: 1.6rem; }
+
+  .main-content { padding: 1rem; }
+  .sidebar { padding: 1rem; width: 270px; } 
+  .tool-card h2 { font-size: 1.3rem; }
+  .tool-card .tool-link { width: 100%; text-align: center;} 
+  .price-tag { margin-top: 0.5rem; display: block; text-align: center;}
+  .tool-actions { flex-direction: column; align-items: stretch;}
+  .category-tiles { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem;}
+  .category-tile { padding: 1rem 0.5rem; font-size: 0.9rem;}
+  .category-tile i { font-size: 1.8rem;}
+}
+
+/* Category Colors */
+/* Card bands, Sidebar buttons, SmallToolCard icons, Category Tile icons/text */
+
+/* AI Tools - Bright Blue */
+.category-ai-tools .category-band, .small-tool-card.category-ai-tools .category-icon-bg { background-color: #00AEEF; }
+html.light-theme button.category-ai-tools.active, html.light-theme button.category-ai-tools:hover, html.light-theme .category-tile.category-ai-tools { background-color: #00AEEF; color: white; border-color: #00AEEF; }
+html.light-theme .category-tile.category-ai-tools i { color: #00AEEF; }
+html.dark-theme button.category-ai-tools.active, html.dark-theme button.category-ai-tools:hover, html.dark-theme .category-tile.category-ai-tools { background-color: #00AEEF; color: black; border-color: #00AEEF; }
+html.dark-theme .category-tile.category-ai-tools i { color: #00AEEF; }
+
+/* Office Tools - Dark Orange */
+.category-office-tools .category-band, .small-tool-card.category-office-tools .category-icon-bg { background-color: #FF8C00; }
+html.light-theme button.category-office-tools.active, html.light-theme button.category-office-tools:hover, html.light-theme .category-tile.category-office-tools { background-color: #FF8C00; color: white; border-color: #FF8C00; }
+html.light-theme .category-tile.category-office-tools i { color: #FF8C00; }
+html.dark-theme button.category-office-tools.active, html.dark-theme button.category-office-tools:hover, html.dark-theme .category-tile.category-office-tools { background-color: #FF8C00; color: black; border-color: #FF8C00; }
+html.dark-theme .category-tile.category-office-tools i { color: #FF8C00; }
+
+/* Design Tools - Amethyst Purple */
+.category-design-tools .category-band, .small-tool-card.category-design-tools .category-icon-bg { background-color: #9B59B6; }
+html.light-theme button.category-design-tools.active, html.light-theme button.category-design-tools:hover, html.light-theme .category-tile.category-design-tools { background-color: #9B59B6; color: white; border-color: #9B59B6; }
+html.light-theme .category-tile.category-design-tools i { color: #9B59B6; }
+html.dark-theme button.category-design-tools.active, html.dark-theme button.category-design-tools:hover, html.dark-theme .category-tile.category-design-tools { background-color: #9B59B6; color: white; border-color: #9B59B6; }
+html.dark-theme .category-tile.category-design-tools i { color: #9B59B6; }
+
+/* Video Editing - Alizarin Red */
+.category-video-editing .category-band, .small-tool-card.category-video-editing .category-icon-bg { background-color: #E74C3C; }
+html.light-theme button.category-video-editing.active, html.light-theme button.category-video-editing:hover, html.light-theme .category-tile.category-video-editing { background-color: #E74C3C; color: white; border-color: #E74C3C; }
+html.light-theme .category-tile.category-video-editing i { color: #E74C3C; }
+html.dark-theme button.category-video-editing.active, html.dark-theme button.category-video-editing:hover, html.dark-theme .category-tile.category-video-editing { background-color: #E74C3C; color: white; border-color: #E74C3C; }
+html.dark-theme .category-tile.category-video-editing i { color: #E74C3C; }
+
+/* Hosting & Deployment - Emerald Green */
+.category-hosting-and-deployment .category-band, .small-tool-card.category-hosting-and-deployment .category-icon-bg { background-color: #2ECC71; }
+html.light-theme button.category-hosting-and-deployment.active, html.light-theme button.category-hosting-and-deployment:hover, html.light-theme .category-tile.category-hosting-and-deployment { background-color: #2ECC71; color: white; border-color: #2ECC71; }
+html.light-theme .category-tile.category-hosting-and-deployment i { color: #2ECC71; }
+html.dark-theme button.category-hosting-and-deployment.active, html.dark-theme button.category-hosting-and-deployment:hover, html.dark-theme .category-tile.category-hosting-and-deployment { background-color: #2ECC71; color: black; border-color: #2ECC71; }
+html.dark-theme .category-tile.category-hosting-and-deployment i { color: #2ECC71; }
+
+/* CSE Academic - Sunflower Yellow */
+.category-cse-academic .category-band, .small-tool-card.category-cse-academic .category-icon-bg { background-color: #F1C40F; }
+html.light-theme button.category-cse-academic.active, html.light-theme button.category-cse-academic:hover, html.light-theme .category-tile.category-cse-academic { background-color: #F1C40F; color: black; border-color: #F1C40F; }
+html.light-theme .category-tile.category-cse-academic i { color: #F1C40F; }
+html.dark-theme button.category-cse-academic.active, html.dark-theme button.category-cse-academic:hover, html.dark-theme .category-tile.category-cse-academic { background-color: #F1C40F; color: black; border-color: #F1C40F; }
+html.dark-theme .category-tile.category-cse-academic i { color: #F1C40F; }
+
+/* VPN & Privacy - Turquoise */
+.category-vpn-and-privacy .category-band, .small-tool-card.category-vpn-and-privacy .category-icon-bg { background-color: #1ABC9C; }
+html.light-theme button.category-vpn-and-privacy.active, html.light-theme button.category-vpn-and-privacy:hover, html.light-theme .category-tile.category-vpn-and-privacy { background-color: #1ABC9C; color: white; border-color: #1ABC9C; }
+html.light-theme .category-tile.category-vpn-and-privacy i { color: #1ABC9C; }
+html.dark-theme button.category-vpn-and-privacy.active, html.dark-theme button.category-vpn-and-privacy:hover, html.dark-theme .category-tile.category-vpn-and-privacy { background-color: #1ABC9C; color: black; border-color: #1ABC9C; }
+html.dark-theme .category-tile.category-vpn-and-privacy i { color: #1ABC9C; }
+
+/* Project & Professional Tools - Slate Blue */
+.category-project-and-professional-tools .category-band, .small-tool-card.category-project-and-professional-tools .category-icon-bg { background-color: #6A5ACD; }
+html.light-theme button.category-project-and-professional-tools.active, html.light-theme button.category-project-and-professional-tools:hover, html.light-theme .category-tile.category-project-and-professional-tools { background-color: #6A5ACD; color: white; border-color: #6A5ACD; }
+html.light-theme .category-tile.category-project-and-professional-tools i { color: #6A5ACD; }
+html.dark-theme button.category-project-and-professional-tools.active, html.dark-theme button.category-project-and-professional-tools:hover, html.dark-theme .category-tile.category-project-and-professional-tools { background-color: #7B68EE; color: white; border-color: #7B68EE; }
+html.dark-theme .category-tile.category-project-and-professional-tools i { color: #7B68EE; }
+
+/* CSE Real-Life Projects - Lime Green */
+.category-cse-real-life-projects .category-band, .small-tool-card.category-cse-real-life-projects .category-icon-bg { background-color: #32CD32; }
+html.light-theme button.category-cse-real-life-projects.active, html.light-theme button.category-cse-real-life-projects:hover, html.light-theme .category-tile.category-cse-real-life-projects { background-color: #32CD32; color: white; border-color: #32CD32; }
+html.light-theme .category-tile.category-cse-real-life-projects i { color: #32CD32; }
+html.dark-theme button.category-cse-real-life-projects.active, html.dark-theme button.category-cse-real-life-projects:hover, html.dark-theme .category-tile.category-cse-real-life-projects { background-color: #50C878; color: black; border-color: #50C878; }
+html.dark-theme .category-tile.category-cse-real-life-projects i { color: #50C878; }
+
+/* CSE Semester Resources - Steel Blue */
+.category-cse-semester-resources .category-band, .small-tool-card.category-cse-semester-resources .category-icon-bg { background-color: #4682B4; }
+html.light-theme button.category-cse-semester-resources.active, html.light-theme button.category-cse-semester-resources:hover, html.light-theme .category-tile.category-cse-semester-resources { background-color: #4682B4; color: white; border-color: #4682B4; }
+html.light-theme .category-tile.category-cse-semester-resources i { color: #4682B4; }
+html.dark-theme button.category-cse-semester-resources.active, html.dark-theme button.category-cse-semester-resources:hover, html.dark-theme .category-tile.category-cse-semester-resources { background-color: #5F9EA0; color: white; border-color: #5F9EA0; }
+html.dark-theme .category-tile.category-cse-semester-resources i { color: #5F9EA0; }
+
+
+/* Category Tile Hover specific for icon/text color */
+html.light-theme .category-tile:hover {
+    /* Background and border color will be the category specific color from above rules */
+    /* Example for AI Tools */
+    /* &.category-ai-tools:hover { background-color: #00AEEF; color: white; border-color: #00AEEF; i { color: white; }} */
+}
+/* This is tricky to do generally for tiles without JS. The current approach colors background/border on hover.
+   If text/icon color needs to change on hover to white, it would require specific rules per category for .category-tile:hover */
+```
+
+I've made extensive changes to both `index.tsx` and `index.css` to meet your request for a more professional and feature-rich website:
+
+**Key Changes in `index.tsx`:**
+
+1.  **Enhanced `Tool` Interface**: Added `detailedDescription`, `features`, `pros`, `cons`, `userRating`, and `gallery` fields.
+2.  **`transformNewData` Update**: Populates these new fields with generic placeholder content.
+3.  **Dynamic `Hero` Component**:
+    *   Cycles through predefined "slides" with headlines, sub-headlines, and CTAs.
+    *   CTAs now link to specific categories, triggering a filter and scroll.
+    *   Includes navigation dots.
+4.  **`FeaturedToolsSection`**:
+    *   A new section displaying a curated list of tools using a new `SmallToolCard` component.
+    *   Selection logic picks a few diverse, free tools.
+5.  **`CategoryHighlightSection`**:
+    *   Visually engaging tiles for major categories.
+    *   Clicking a tile filters the main tool list.
+    *   Includes category-specific icons.
+6.  **`ToolCard` Overhaul**:
+    *   The expandable "Full Details" section now shows `detailedDescription`, lists of `features`, `pros`, `cons`.
+    *   Displays `userRating` using a new `StarRating` component.
+    *   Includes a placeholder for a `gallery`.
+7.  **`Footer` Enhancement**:
+    *   Multi-column layout with sections for "About AltFinder," "Follow Us" (social media icons with links), and "Quick Links."
+8.  **`App` Component Structure**: Integrates the new sections (`FeaturedToolsSection`, `CategoryHighlightSection`) into the main page layout.
+9.  **Helper Functions**: `getCategoryIcon` for dynamic icons and `StarRating` component.
+10. **Scroll-to-Logic**: Implemented `useRef` and scroll-to-view functionality when categories are selected from the Hero or Category Highlight sections.
+
+**Key Changes in `index.css`:**
+
+1.  **Major Styling Overhaul**:
+    *   Refined color palette for both light and dark themes, focusing on professionalism and contrast.
+    *   Updated typography with "Montserrat" for headings.
+    *   Increased base line-height and made font sizes more consistent.
+2.  **New Section Styling**:
+    *   `Hero` section: Styles for slide transitions, content layout, and navigation dots.
+    *   `FeaturedToolsSection` & `SmallToolCard`: Distinct, appealing styles for featured tool presentation.
+    *   `CategoryHighlightSection` & `CategoryTile`: Attractive tile-based layout for category browsing, with hover effects and category-specific icon colors.
+    *   General `.homepage-section` and `.section-title` classes for consistent section presentation.
+3.  **`ToolCard` Details Styling**:
+    *   Clear and readable layout for the expanded information (detailed description, features, pros/cons lists, gallery placeholders).
+    *   Styled `StarRating` component.
+4.  **`Footer` Styling**: Implemented the multi-column layout with improved typography and spacing.
+5.  **Responsiveness**: Ensured all new sections and components are responsive across various screen sizes, with adjustments for mobile, tablet, and desktop.
+6.  **Category Colors**: Applied consistent category-specific coloring to card bands, sidebar buttons, small tool card icons, and category tile icons/text.
+7.  **Transitions & Hover Effects**: Added subtle transitions and hover effects to buttons, cards, and links for better interactivity.
+8.  **Layout**: Switched `main-content` to use CSS Grid for better sidebar and content area management. Adjusted sidebar visibility breakpoints.
+
+This should bring the application much closer to the professional, content-rich website you envision. Remember to populate your data source with actual detailed information for the new fields to make the tool details truly valuable!
